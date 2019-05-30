@@ -27,6 +27,8 @@
 */
 
 #include <QGuiApplication>
+#include <QStandardPaths>
+#include <QTranslator>
 #include <QQuickView>
 #include <QtQml>
 
@@ -89,6 +91,12 @@ Q_DECL_EXPORT int main(int argc, char* argv[])
 
     QScopedPointer<QQuickView> viewer(SailfishApp::createView());
     viewer->engine()->addImportPath("/usr/share/harbour-communi/qml");
+
+    QTranslator translator;
+
+    if (translator.load(QLocale(), app.applicationName, QLatin1String("_"),
+                        QStandardPaths::locate(QStandardPaths::AppDataLocation, "languages"))
+        app.installTranslator(&translator);
 
 //#if QT_VERSION < 0x050200
     qmlRegisterType<QQmlSettings>("Qt.labs.settings", 1, 0, "Settings");
