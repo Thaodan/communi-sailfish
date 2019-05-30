@@ -16,3 +16,7 @@ OTHER_FILES += \
     src/app/harbour-communi.desktop \
     src/app/harbour-communi.png \
     README.md
+
+TRANSLATIONS = languages/harbour-communi_de.ts \
+               languages/harbour-communi_en.ts
+               # add new languages here
