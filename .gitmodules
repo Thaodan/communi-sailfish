@@ -1,6 +1,7 @@
 [submodule "src/backend"]
 	path = src/backend
-	url = git://github.com/communi/libcommuni.git
+	url = git://github.com/Thaodan/libcommuni.git
+        branch = "ircconnection_connectioncount"
 [submodule "src/shared"]
 	path = src/shared
 	url = git://github.com/communi/communi-shared.git
