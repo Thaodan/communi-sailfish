@@ -31,6 +31,7 @@
 #include <QtQml>
 #include <QFileInfo>
 #include <QDir>
+#include <QStandardPaths>
 
 //#if QT_VERSION < 0x050200
 #include "qqmlsettings_p.h"
@@ -111,8 +112,11 @@ Q_DECL_EXPORT int main(int argc, char* argv[])
     QGuiApplication::setApplicationName(ApplicationName);
     QGuiApplication::setApplicationVersion(APP_VERSION);
 
+    QString AppDataLocationReadOnly =
+        QStandardPaths::standardLocations(QStandardPaths::AppLocalDataLocation).last();
+
     QScopedPointer<QQuickView> viewer(SailfishApp::createView());
-    viewer->engine()->addImportPath("/usr/share/harbour-communi/qml");
+    viewer->engine()->addImportPath(AppDataLocationReadOnly + "/qml");
 
 //#if QT_VERSION < 0x050200
     qmlRegisterType<QQmlSettings>("Qt.labs.settings", 1, 0, "Settings");
@@ -150,7 +154,7 @@ Q_DECL_EXPORT int main(int argc, char* argv[])
     QObject::connect(model, SIGNAL(connectionRemoved(IrcConnection*)), ignore, SLOT(removeConnection(IrcConnection*)));
 
     PluginLoader loader;
-    loader.setPluginPath("/usr/share/harbour-communi/plugins");
+    loader.setPluginPath(AppDataLocationReadOnly + "/plugins");
     if (loader.load()) {
         QObject::connect(model, SIGNAL(connectionAdded(IrcConnection*)), &loader, SLOT(connectionAdded(IrcConnection*)));
         QObject::connect(model, SIGNAL(connectionRemoved(IrcConnection*)), &loader, SLOT(connectionRemoved(IrcConnection*)));
