@@ -115,6 +115,7 @@ Q_DECL_EXPORT int main(int argc, char* argv[])
     QString AppDataLocationReadOnly =
         QStandardPaths::standardLocations(QStandardPaths::AppLocalDataLocation).last();
 
+    qDebug() << "AppDataLocationReadOnly:" << AppDataLocationReadOnly;
     QScopedPointer<QQuickView> viewer(SailfishApp::createView());
     viewer->engine()->addImportPath(AppDataLocationReadOnly + "/qml");
 
