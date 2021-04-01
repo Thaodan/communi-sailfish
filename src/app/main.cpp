@@ -111,6 +111,8 @@ Q_DECL_EXPORT int main(int argc, char* argv[])
 
     QGuiApplication::setApplicationName(ApplicationName);
     QGuiApplication::setApplicationVersion(APP_VERSION);
+    QGuiApplication::setOrganizationName(QString());
+    QGuiApplication::setOrganizationDomain(QString());
 
     QString AppDataLocationReadOnly =
         QStandardPaths::standardLocations(QStandardPaths::AppLocalDataLocation).last();
